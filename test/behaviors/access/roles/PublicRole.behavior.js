@@ -1,5 +1,6 @@
 const { expectRevert, constants, expectEvent } = require('openzeppelin-test-helpers');
 const { ZERO_ADDRESS } = constants;
+const { expect } = require('chai');
 
 function capitalize (str) {
   return str.replace(/\b\w/g, l => l.toUpperCase());
