@@ -1,5 +1,6 @@
 const { balance, BN, constants, ether, expectEvent, expectRevert } = require('openzeppelin-test-helpers');
 const { ZERO_ADDRESS } = constants;
+
 const { expect } = require('chai');
 
 const Crowdsale = artifacts.require('CrowdsaleMock');
@@ -87,13 +88,13 @@ contract('Crowdsale', function ([_, investor, wallet, purchaser]) {
 
         it('should assign tokens to sender', async function () {
           await this.crowdsale.sendTransaction({ value: value, from: investor });
-          expect(await this.token.balanceOf(investor)).to.bignumber.equal(expectedTokenAmount);
+          expect(await this.token.balanceOf(investor)).to.be.bignumber.equal(expectedTokenAmount);
         });
 
         it('should forward funds to wallet', async function () {
           const balanceTracker = await balance.tracker(wallet);
           await this.crowdsale.sendTransaction({ value, from: investor });
-          expect(await balanceTracker.delta()).to.bignumber.equal(value);
+          expect(await balanceTracker.delta()).to.be.bignumber.equal(value);
         });
       });
 
@@ -110,13 +111,13 @@ contract('Crowdsale', function ([_, investor, wallet, purchaser]) {
 
         it('should assign tokens to beneficiary', async function () {
           await this.crowdsale.buyTokens(investor, { value, from: purchaser });
-          expect(await this.token.balanceOf(investor)).to.bignumber.equal(expectedTokenAmount);
+          expect(await this.token.balanceOf(investor)).to.be.bignumber.equal(expectedTokenAmount);
         });
 
         it('should forward funds to wallet', async function () {
           const balanceTracker = await balance.tracker(wallet);
           await this.crowdsale.buyTokens(investor, { value, from: purchaser });
-          expect(await balanceTracker.delta()).to.bignumber.equal(value);
+          expect(await balanceTracker.delta()).to.be.bignumber.equal(value);
         });
       });
     });

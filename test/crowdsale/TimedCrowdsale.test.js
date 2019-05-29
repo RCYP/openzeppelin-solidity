@@ -1,4 +1,5 @@
 const { BN, ether, expectEvent, expectRevert, time } = require('openzeppelin-test-helpers');
+
 const { expect } = require('chai');
 
 const TimedCrowdsaleImpl = artifacts.require('TimedCrowdsaleImpl');
@@ -106,7 +107,7 @@ contract('TimedCrowdsale', function ([_, investor, wallet, purchaser]) {
             prevClosingTime: this.closingTime,
             newClosingTime: newClosingTime,
           });
-          expect(await this.crowdsale.closingTime()).to.bignumber.equal(newClosingTime);
+          expect(await this.crowdsale.closingTime()).to.be.bignumber.equal(newClosingTime);
         });
       });
 
@@ -124,7 +125,7 @@ contract('TimedCrowdsale', function ([_, investor, wallet, purchaser]) {
             prevClosingTime: this.closingTime,
             newClosingTime: newClosingTime,
           });
-          expect(await this.crowdsale.closingTime()).to.bignumber.equal(newClosingTime);
+          expect(await this.crowdsale.closingTime()).to.be.bignumber.equal(newClosingTime);
         });
       });
 

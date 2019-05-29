@@ -1,4 +1,5 @@
 const { BN, ether, expectRevert } = require('openzeppelin-test-helpers');
+
 const { expect } = require('chai');
 
 const CappedCrowdsaleImpl = artifacts.require('CappedCrowdsaleImpl');

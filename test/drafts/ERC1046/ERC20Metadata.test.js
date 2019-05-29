@@ -1,6 +1,7 @@
 require('openzeppelin-test-helpers');
 
 const ERC20MetadataMock = artifacts.require('ERC20MetadataMock');
+
 const { expect } = require('chai');
 
 const metadataURI = 'https://example.com';
