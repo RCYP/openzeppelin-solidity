@@ -38,8 +38,8 @@ contract('RefundablePostDeliveryCrowdsale', function ([_, investor, wallet, purc
       });
 
       it('does not immediately deliver tokens to beneficiaries', async function () {
-        expect(await this.crowdsale.balanceOf(investor)).to.be.bignumber.equal(value);
-        expect(await this.token.balanceOf(investor)).to.be.bignumber.equal('0');
+        expect(await this.crowdsale.balanceOf(investor)).to.bignumber.equal(value);
+        expect(await this.token.balanceOf(investor)).to.bignumber.equal('0');
       });
 
       it('does not allow beneficiaries to withdraw tokens before crowdsale ends', async function () {
@@ -70,8 +70,8 @@ contract('RefundablePostDeliveryCrowdsale', function ([_, investor, wallet, purc
       });
 
       it('does not immediately deliver tokens to beneficiaries', async function () {
-        expect(await this.crowdsale.balanceOf(investor)).to.be.bignumber.equal(value);
-        expect(await this.token.balanceOf(investor)).to.be.bignumber.equal('0');
+        expect(await this.crowdsale.balanceOf(investor)).to.bignumber.equal(value);
+        expect(await this.token.balanceOf(investor)).to.bignumber.equal('0');
       });
 
       it('does not allow beneficiaries to withdraw tokens before crowdsale ends', async function () {
@@ -88,8 +88,8 @@ contract('RefundablePostDeliveryCrowdsale', function ([_, investor, wallet, purc
 
         it('allows beneficiaries to withdraw tokens', async function () {
           await this.crowdsale.withdrawTokens(investor);
-          expect(await this.crowdsale.balanceOf(investor)).to.be.bignumber.equal('0');
-          expect(await this.token.balanceOf(investor)).to.be.bignumber.equal(value);
+          expect(await this.crowdsale.balanceOf(investor)).to.bignumber.equal('0');
+          expect(await this.token.balanceOf(investor)).to.bignumber.equal(value);
         });
 
         it('rejects multiple withdrawals', async function () {

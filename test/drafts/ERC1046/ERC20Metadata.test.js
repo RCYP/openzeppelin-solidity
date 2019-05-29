@@ -11,14 +11,14 @@ describe('ERC20Metadata', function () {
   });
 
   it('responds with the metadata', async function () {
-    expect(await this.token.tokenURI()).to.be.equal(metadataURI);
+    expect(await this.token.tokenURI()).to.equal(metadataURI);
   });
 
   describe('setTokenURI', function () {
     it('changes the original URI', async function () {
       const newMetadataURI = 'https://betterexample.com';
       await this.token.setTokenURI(newMetadataURI);
-      expect(await this.token.tokenURI()).to.be.equal(newMetadataURI);
+      expect(await this.token.tokenURI()).to.equal(newMetadataURI);
     });
   });
 });

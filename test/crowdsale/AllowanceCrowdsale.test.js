@@ -19,7 +19,7 @@ contract('AllowanceCrowdsale', function ([_, investor, wallet, purchaser, tokenW
 
   describe('accepting payments', function () {
     it('should have token wallet', async function () {
-      expect(await this.crowdsale.tokenWallet()).to.be.equal(tokenWallet);
+      expect(await this.crowdsale.tokenWallet()).to.equal(tokenWallet);
     });
 
     it('should accept sends', async function () {
@@ -44,7 +44,7 @@ contract('AllowanceCrowdsale', function ([_, investor, wallet, purchaser, tokenW
 
     it('should assign tokens to sender', async function () {
       await this.crowdsale.sendTransaction({ value: value, from: investor });
-      expect(await this.token.balanceOf(investor)).to.be.bignumber.equal(expectedTokenAmount);
+      expect(await this.token.balanceOf(investor)).to.bignumber.equal(expectedTokenAmount);
     });
 
     it('should forward funds to wallet', async function () {
@@ -58,7 +58,7 @@ contract('AllowanceCrowdsale', function ([_, investor, wallet, purchaser, tokenW
     it('should report correct allowance left', async function () {
       const remainingAllowance = tokenAllowance.sub(expectedTokenAmount);
       await this.crowdsale.buyTokens(investor, { value: value, from: purchaser });
-      expect(await this.crowdsale.remainingTokens()).to.be.bignumber.equal(remainingAllowance);
+      expect(await this.crowdsale.remainingTokens()).to.bignumber.equal(remainingAllowance);
     });
 
     context('when the allowance is larger than the token amount', function () {
@@ -68,7 +68,7 @@ contract('AllowanceCrowdsale', function ([_, investor, wallet, purchaser, tokenW
       });
 
       it('should report the amount instead of the allowance', async function () {
-        expect(await this.crowdsale.remainingTokens()).to.be.bignumber.equal(await this.token.balanceOf(tokenWallet));
+        expect(await this.crowdsale.remainingTokens()).to.bignumber.equal(await this.token.balanceOf(tokenWallet));
       });
     });
   });

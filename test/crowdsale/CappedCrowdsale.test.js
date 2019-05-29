@@ -45,17 +45,17 @@ contract('CappedCrowdsale', function ([_, wallet]) {
     describe('ending', function () {
       it('should not reach cap if sent under cap', async function () {
         await this.crowdsale.send(lessThanCap);
-        expect(await this.crowdsale.capReached()).to.be.equal(false);
+        expect(await this.crowdsale.capReached()).to.equal(false);
       });
 
       it('should not reach cap if sent just under cap', async function () {
         await this.crowdsale.send(cap.subn(1));
-        expect(await this.crowdsale.capReached()).to.be.equal(false);
+        expect(await this.crowdsale.capReached()).to.equal(false);
       });
 
       it('should reach cap if cap sent', async function () {
         await this.crowdsale.send(cap);
-        expect(await this.crowdsale.capReached()).to.be.equal(true);
+        expect(await this.crowdsale.capReached()).to.equal(true);
       });
     });
   });

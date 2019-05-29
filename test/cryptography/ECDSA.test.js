@@ -24,7 +24,7 @@ contract('ECDSA', function ([_, other]) {
         it('returns 0', async function () {
           const version = '00';
           const signature = signatureWithoutVersion + version;
-          expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.be.equal(ZERO_ADDRESS);
+          expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.equal(ZERO_ADDRESS);
         });
       });
 
@@ -32,7 +32,7 @@ contract('ECDSA', function ([_, other]) {
         it('works', async function () {
           const version = '1b'; // 27 = 1b.
           const signature = signatureWithoutVersion + version;
-          expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.be.equal(signer);
+          expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.equal(signer);
         });
       });
 
@@ -42,7 +42,7 @@ contract('ECDSA', function ([_, other]) {
           // The only valid values are 0, 1, 27 and 28.
           const version = '02';
           const signature = signatureWithoutVersion + version;
-          expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.be.equal(ZERO_ADDRESS);
+          expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.equal(ZERO_ADDRESS);
         });
       });
     });
@@ -56,7 +56,7 @@ contract('ECDSA', function ([_, other]) {
         it('returns 0', async function () {
           const version = '01';
           const signature = signatureWithoutVersion + version;
-          expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.be.equal(ZERO_ADDRESS);
+          expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.equal(ZERO_ADDRESS);
         });
       });
 
@@ -64,7 +64,7 @@ contract('ECDSA', function ([_, other]) {
         it('works', async function () {
           const version = '1c'; // 28 = 1c.
           const signature = signatureWithoutVersion + version;
-          expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.be.equal(signer);
+          expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.equal(signer);
         });
       });
 
@@ -74,7 +74,7 @@ contract('ECDSA', function ([_, other]) {
           // The only valid values are 0, 1, 27 and 28.
           const version = '02';
           const signature = signatureWithoutVersion + version;
-          expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.be.equal(ZERO_ADDRESS);
+          expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.equal(ZERO_ADDRESS);
         });
       });
     });
@@ -85,7 +85,7 @@ contract('ECDSA', function ([_, other]) {
         // eslint-disable-next-line max-len
         const highSSignature = '0xe742ff452d41413616a5bf43fe15dd88294e983d3d36206c2712f39083d638bde0a0fc89be718fbc1033e1d30d78be1c68081562ed2e97af876f286f3453231d1b';
 
-        expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.be.equal(ZERO_ADDRESS);
+        expect(await this.ecdsa.recover(TEST_MESSAGE, signature)).to.equal(ZERO_ADDRESS);
       });
     });
 
@@ -99,7 +99,7 @@ contract('ECDSA', function ([_, other]) {
           expect(await this.ecdsa.recover(
             TEST_MESSAGE,
             signature
-          )).to.be.equal(other);
+          )).to.equal(other);
         });
       });
 
@@ -109,7 +109,7 @@ contract('ECDSA', function ([_, other]) {
           const signature = await web3.eth.sign(TEST_MESSAGE, other);
 
           // Recover the signer address from the generated message and wrong signature.
-          expect(await this.ecdsa.recover(WRONG_MESSAGE, signature)).to.be.equal(other);
+          expect(await this.ecdsa.recover(WRONG_MESSAGE, signature)).to.equal(other);
         });
       });
     });
@@ -130,7 +130,7 @@ contract('ECDSA', function ([_, other]) {
   context('toEthSignedMessage', function () {
     it('should prefix hashes correctly', async function () {
       (await this.ecdsa.toEthSignedMessageHash(TEST_MESSAGE)).should.equal(toEthSignedMessageHash(TEST_MESSAGE));
-      expect(await this.ecdsa.toEthSignedMessageHash(TEST_MESSAGE)).to.be.equal(toEthSignedMessageHash(TEST_MESSAGE));
+      expect(await this.ecdsa.toEthSignedMessageHash(TEST_MESSAGE)).to.equal(toEthSignedMessageHash(TEST_MESSAGE));
     });
   });
 });

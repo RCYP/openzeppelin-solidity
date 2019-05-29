@@ -8,6 +8,8 @@ const UINT_VALUE = 23;
 const BYTES_VALUE = web3.utils.toHex('test');
 const INVALID_SIGNATURE = '0xabcd';
 
+const { expect } = require('chai');
+
 contract('SignatureBouncer', function ([_, signer, otherSigner, other, authorizedUser, ...otherAccounts]) {
   beforeEach(async function () {
     this.sigBouncer = await SignatureBouncerMock.new({ from: signer });

@@ -20,7 +20,7 @@ contract('MintedCrowdsale', function ([_, deployer, investor, wallet, purchaser]
     });
 
     it('crowdsale should be minter', async function () {
-      expect(await this.token.isMinter(this.crowdsale.address)).to.be.equal(true);
+      expect(await this.token.isMinter(this.crowdsale.address)).to.equal(true);
     });
 
     shouldBehaveLikeMintedCrowdsale([_, investor, wallet, purchaser], rate, value);

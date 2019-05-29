@@ -24,7 +24,7 @@ contract('ERC20Migrator', function ([_, owner, recipient, anotherAccount]) {
     });
 
     it('returns legacy token', async function () {
-      expect(await this.migrator.legacyToken()).to.be.equal(this.legacyToken.address);
+      expect(await this.migrator.legacyToken()).to.equal(this.legacyToken.address);
     });
 
     describe('beginMigration', function () {
@@ -56,7 +56,7 @@ contract('ERC20Migrator', function ([_, owner, recipient, anotherAccount]) {
 
     context('before starting the migration', function () {
       it('returns the zero address for the new token', async function () {
-        expect(await this.migrator.newToken()).to.be.equal(ZERO_ADDRESS);
+        expect(await this.migrator.newToken()).to.equal(ZERO_ADDRESS);
       });
 
       describe('migrateAll', function () {
@@ -99,7 +99,7 @@ contract('ERC20Migrator', function ([_, owner, recipient, anotherAccount]) {
       });
 
       it('returns new token', async function () {
-        expect(await this.migrator.newToken()).to.be.equal(this.newToken.address);
+        expect(await this.migrator.newToken()).to.equal(this.newToken.address);
       });
 
       describe('migrateAll', function () {
@@ -119,20 +119,20 @@ contract('ERC20Migrator', function ([_, owner, recipient, anotherAccount]) {
 
           it('mints the same balance of the new token', async function () {
             const currentBalance = await this.newToken.balanceOf(owner);
-            expect(currentBalance).to.be.bignumber.equal(amount);
+            expect(currentBalance).to.bignumber.equal(amount);
           });
 
           it('burns a given amount of old tokens', async function () {
             const currentBurnedBalance = await this.legacyToken.balanceOf(this.migrator.address);
-            expect(currentBurnedBalance).to.be.bignumber.equal(amount);
+            expect(currentBurnedBalance).to.bignumber.equal(amount);
 
             const currentLegacyTokenBalance = await this.legacyToken.balanceOf(owner);
-            expect(currentLegacyTokenBalance).to.be.bignumber.equal('0');
+            expect(currentLegacyTokenBalance).to.bignumber.equal('0');
           });
 
           it('updates the total supply', async function () {
             const currentSupply = await this.newToken.totalSupply();
-            expect(currentSupply).to.be.bignumber.equal(amount);
+            expect(currentSupply).to.bignumber.equal(amount);
           });
         });
 
@@ -146,7 +146,7 @@ contract('ERC20Migrator', function ([_, owner, recipient, anotherAccount]) {
 
           it('migrates only approved amount', async function () {
             const currentBalance = await this.newToken.balanceOf(owner);
-            expect(currentBalance).to.be.bignumber.equal(amount);
+            expect(currentBalance).to.bignumber.equal(amount);
           });
         });
       });
@@ -167,20 +167,20 @@ contract('ERC20Migrator', function ([_, owner, recipient, anotherAccount]) {
 
           it('mints that amount of the new token', async function () {
             const currentBalance = await this.newToken.balanceOf(owner);
-            expect(currentBalance).to.be.bignumber.equal(amount);
+            expect(currentBalance).to.bignumber.equal(amount);
           });
 
           it('burns a given amount of old tokens', async function () {
             const currentBurnedBalance = await this.legacyToken.balanceOf(this.migrator.address);
-            expect(currentBurnedBalance).to.be.bignumber.equal(amount);
+            expect(currentBurnedBalance).to.bignumber.equal(amount);
 
             const currentLegacyTokenBalance = await this.legacyToken.balanceOf(owner);
-            expect(currentLegacyTokenBalance).to.be.bignumber.equal(totalSupply.sub(amount));
+            expect(currentLegacyTokenBalance).to.bignumber.equal(totalSupply.sub(amount));
           });
 
           it('updates the total supply', async function () {
             const currentSupply = await this.newToken.totalSupply();
-            expect(currentSupply).to.be.bignumber.equal(amount);
+            expect(currentSupply).to.bignumber.equal(amount);
           });
         });
 

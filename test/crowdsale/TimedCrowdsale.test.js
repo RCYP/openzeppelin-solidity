@@ -48,15 +48,15 @@ contract('TimedCrowdsale', function ([_, investor, wallet, purchaser]) {
     });
 
     it('should be ended only after end', async function () {
-      expect(await this.crowdsale.hasClosed()).to.be.equal(false);
+      expect(await this.crowdsale.hasClosed()).to.equal(false);
       await time.increaseTo(this.afterClosingTime);
-      expect(await this.crowdsale.isOpen()).to.be.equal(false);
-      expect(await this.crowdsale.hasClosed()).to.be.equal(true);
+      expect(await this.crowdsale.isOpen()).to.equal(false);
+      expect(await this.crowdsale.hasClosed()).to.equal(true);
     });
 
     describe('accepting payments', function () {
       it('should reject payments before start', async function () {
-        expect(await this.crowdsale.isOpen()).to.be.equal(false);
+        expect(await this.crowdsale.isOpen()).to.equal(false);
         await expectRevert(this.crowdsale.send(value), 'TimedCrowdsale: not open');
         await expectRevert(this.crowdsale.buyTokens(investor, { from: purchaser, value: value }),
           'TimedCrowdsale: not open'
@@ -65,7 +65,7 @@ contract('TimedCrowdsale', function ([_, investor, wallet, purchaser]) {
 
       it('should accept payments after start', async function () {
         await time.increaseTo(this.openingTime);
-        expect(await this.crowdsale.isOpen()).to.be.equal(true);
+        expect(await this.crowdsale.isOpen()).to.equal(true);
         await this.crowdsale.send(value);
         await this.crowdsale.buyTokens(investor, { value: value, from: purchaser });
       });
@@ -95,7 +95,7 @@ contract('TimedCrowdsale', function ([_, investor, wallet, purchaser]) {
 
       context('before crowdsale start', function () {
         beforeEach(async function () {
-          expect(await this.crowdsale.isOpen()).to.be.equal(false);
+          expect(await this.crowdsale.isOpen()).to.equal(false);
           await expectRevert(this.crowdsale.send(value), 'TimedCrowdsale: not open');
         });
 
@@ -106,14 +106,14 @@ contract('TimedCrowdsale', function ([_, investor, wallet, purchaser]) {
             prevClosingTime: this.closingTime,
             newClosingTime: newClosingTime,
           });
-          expect(await this.crowdsale.closingTime()).to.be.bignumber.equal(newClosingTime);
+          expect(await this.crowdsale.closingTime()).to.bignumber.equal(newClosingTime);
         });
       });
 
       context('after crowdsale start', function () {
         beforeEach(async function () {
           await time.increaseTo(this.openingTime);
-          expect(await this.crowdsale.isOpen()).to.be.equal(true);
+          expect(await this.crowdsale.isOpen()).to.equal(true);
           await this.crowdsale.send(value);
         });
 
@@ -124,7 +124,7 @@ contract('TimedCrowdsale', function ([_, investor, wallet, purchaser]) {
             prevClosingTime: this.closingTime,
             newClosingTime: newClosingTime,
           });
-          expect(await this.crowdsale.closingTime()).to.be.bignumber.equal(newClosingTime);
+          expect(await this.crowdsale.closingTime()).to.bignumber.equal(newClosingTime);
         });
       });
 

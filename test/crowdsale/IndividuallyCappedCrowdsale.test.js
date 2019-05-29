@@ -31,7 +31,7 @@ contract('IndividuallyCappedCrowdsale', function (
   describe('individual caps', function () {
     it('sets a cap when the sender is a capper', async function () {
       await this.crowdsale.setCap(alice, capAlice, { from: capper });
-      expect(await this.crowdsale.getCap(alice)).to.be.bignumber.equal(capAlice);
+      expect(await this.crowdsale.getCap(alice)).to.bignumber.equal(capAlice);
     });
 
     it('reverts when a non-capper sets a cap', async function () {
@@ -85,12 +85,12 @@ contract('IndividuallyCappedCrowdsale', function (
 
       describe('reporting state', function () {
         it('should report correct cap', async function () {
-          expect(await this.crowdsale.getCap(alice)).to.be.bignumber.equal(capAlice);
+          expect(await this.crowdsale.getCap(alice)).to.bignumber.equal(capAlice);
         });
 
         it('should report actual contribution', async function () {
           await this.crowdsale.buyTokens(alice, { value: lessThanCapAlice });
-          expect(await this.crowdsale.getContribution(alice)).to.be.bignumber.equal(lessThanCapAlice);
+          expect(await this.crowdsale.getContribution(alice)).to.bignumber.equal(lessThanCapAlice);
         });
       });
     });
