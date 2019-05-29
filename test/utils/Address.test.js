@@ -1,5 +1,7 @@
 require('openzeppelin-test-helpers');
 
+const { expect } = require('chai');
+
 const AddressImpl = artifacts.require('AddressImpl');
 const SimpleToken = artifacts.require('SimpleToken');
 
@@ -9,11 +11,11 @@ contract('Address', function ([_, other]) {
   });
 
   it('should return false for account address', async function () {
-    (await this.mock.isContract(other)).should.equal(false);
+    expect(await this.mock.isContract(other)).to.equal(false);
   });
 
   it('should return true for contract address', async function () {
     const contract = await SimpleToken.new();
-    (await this.mock.isContract(contract.address)).should.equal(true);
+    expect(await this.mock.isContract(contract.address)).to.equal(true);
   });
 });
